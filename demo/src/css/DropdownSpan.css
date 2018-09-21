@@ -1,0 +1,31 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown table (hidden by default) */
+.dropdown-table {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+}
+
+
+/* Show table on hover */
+.dropdown:hover .dropdown-table {display: block;}
+
+/* Highlight table rows on hover */
+.dropdown-table tr:hover {background-color: #ddd;}
+
+/* Table row formatting */
+.dropdown-table td {
+    padding: 2px;
+}
+
+.dropdown-table td a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}

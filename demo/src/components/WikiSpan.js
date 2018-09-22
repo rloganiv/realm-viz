@@ -1,6 +1,7 @@
 import React from 'react';
-import '../css/DropdownSpan.css';
+
 import '../css/Highlight.css';
+import '../css/WikiSpan.css';
 
 
 class WikiSpan extends React.Component {
@@ -10,12 +11,14 @@ class WikiSpan extends React.Component {
         //      Each of which has a 'url', and 'score'.
         const { text, entity } = this.props;
         return (
-            <span className="highlight green bottom">
+            <div className="wikispan">
                 <a href={'http://wikidata.org/wiki/' + entity} target="_blank">
-                <span className="dropdown-text highlight__content">{text}</span>
+                    <span className="highlight green bottom">
+                        <span className="dropdown-text highlight__content">{text}</span>
+                        <span className="highlight__label"><strong>WIKI-ENT</strong></span>
+                    </span>
                 </a>
-                <span className="highlight__label"><strong>WIKI-ENT</strong></span>
-            </span>
+            </div>
         )
     }
 }

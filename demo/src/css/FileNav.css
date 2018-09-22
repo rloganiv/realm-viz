@@ -1,0 +1,22 @@
+.file-list button {
+    padding: 14px 16px;
+    font-size: 16px;
+    border: none;
+    background-color: #333;
+    color: white;
+}
+
+.file-list-entries {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: white;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.file-list-entries:hover {
+    background-color: #555;
+}
+
+.file-list:hover .file-list-entries {display: block;}

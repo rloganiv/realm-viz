@@ -21,11 +21,12 @@
 
 /* Table row formatting */
 .dropdown-table td {
-    padding: 2px;
+    padding: 1px;
 }
 
 .dropdown-table td a {
     color: black;
     text-decoration: none;
     display: block;
+    cursor: default;
 }

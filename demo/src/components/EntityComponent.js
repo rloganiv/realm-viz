@@ -1,5 +1,7 @@
 import React from 'react';
-// import { Highlight } from './highlight/Highlight.js';
+import { withRouter } from 'react-router-dom';
+
+import { API_ROOT } from '../api-config';
 import HighlightContainer from './highlight/HighlightContainer.js';
 import NelSpan from './NelSpan.js';
 import WikiSpan from './WikiSpan.js';
@@ -14,7 +16,30 @@ const wikitext = "President";
 const wikientity = "Q11696";
 
 
-class Demo extends React.Component {
+class _EntityComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            response: null
+        };
+
+        this.getData = this.getData.bind(this);
+    }
+
+    getData(e) {
+        fetch(`${API_ROOT}/data`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        }).then(function (response) {
+            return response.json();
+        })
+    }
+
     render() {
         return (
             //<p>This will render "{this.props.fname}" someday</p>
@@ -27,4 +52,6 @@ class Demo extends React.Component {
 }
 
 
-export default Demo;
+const EntityComponent = withRouter(_EntityComponent);
+
+export default EntityComponent;

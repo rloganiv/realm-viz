@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-//import { API_ROOT } from './api-config';
 import  { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import Entity from './components/Entity';
+import EntityComponent from './components/EntityComponent';
+import Menu from './components/Menu';
 import logo from './logo.svg';
 
 import './css/App.css';
-
-const queryString = require('query-string');
 
 
 /* Router wrapped around the Demo component*/
@@ -30,26 +28,49 @@ class Demo extends Component {
         super(props);
 
         const { model } = props.match.params;
-        const query =  queryString.parse(window.location.search);
 
         this.state = {
             selectedModel: model,
-            fname: query.fname,
-            line: query.line
+            requestData: null,
+            responseData: null,
+            fileName: null,
+            fileLine: null
+        };
+
+        // Pass this to Header so it can clear data when model is switched.
+        this.clearData = () => {
+            this.setState({requestData: null, responseData: null})
         }
+
+        // Callback used by file objects to set the active file.
+        this.setFile = (fileName) => {
+            console.log(`Setting file to ${fileName}`);
+            this.setState({fileName: {fileName}});
+        }
+
+        // Components use history.push to change location and attach
+        // `requestData` and `responseData` updates to the location object.
+        props.history.listen((location, action) => {
+            const { state } = location;
+            if (state) {
+                const { requestData, responseData } = state;
+                this.setState({requestData, responseData});
+            }
+        });
     }
 
+    // Update the state when new props received from React router.
     componentWillReceiveProps({ match }) {
         const { model } = match.params;
-        this.setState({selectedModel: model})
+        this.setState({selectedModel: model});
     }
 
     render() {
-        const { selectedModel } = this.state;
+        const { selectedModel, requestData, responseData } = this.state;
 
         const ModelComponent = () => {
             if (selectedModel === 'entity'){
-                return (<Entity/>)
+                return (<EntityComponent requestData={requestData} responseData={responseData}/>)
             } else {
                 return (<h1>Undefined Model</h1>)
             }
@@ -62,7 +83,10 @@ class Demo extends Component {
                     <h1 className="App-title">KGLM Dataset Visualization</h1>
                 </header>
                 <div className="pane-container">
-                    <ModelComponent />
+                    <Menu selectedModel={selectedModel}
+                          clearData={this.clearData}
+                          setFile={this.setFile}/>
+                    <ModelComponent/>
                 </div>
             </div>
         );

@@ -1,6 +1,6 @@
 realm-viz
 ===
-A tool for visualizing annotated REALM data.
+A tool for visualizing annotated REALM data. Based on the [AllenNLP Demo](https://github.com/allenai/allennlp-demo).
 
 
 Requirements

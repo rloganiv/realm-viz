@@ -13,15 +13,15 @@ class NelSpan extends React.Component {
             <div className="dropdown">
                 <span className="highlight blue bottom">
                     <span className="dropdown-text highlight__content">{text}</span>
-                    <span className="highlight__label"><strong>NEL-ENT</strong></span>
+                    <span className="highlight__label"><strong>NEL</strong></span>
                 </span>
                 <div className="dropdown-table">
                     <table>
                         <tbody>
                           {entities.map((entity, i) =>
                               <tr key={i}>
-                                  <td align="left"><a href={entity.url} target="_blank">{entity.url}</a></td>
-                                  <td align="left">{entity.score}</td>
+                                  <td align="left"><a href={`http://en.wikipedia.org/wiki/${entity.url}`} target="_blank">{entity.url}</a></td>
+                                  <td align="left">{entity.score.toFixed(2)}</td>
                               </tr>
                           )}
                         </tbody>

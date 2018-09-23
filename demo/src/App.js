@@ -32,29 +32,16 @@ class Demo extends Component {
         this.state = {
             selectedModel: model,
             requestData: null,
-            responseData: null,
-            fileName: null,
-            fileLine: null
+            responseData: null
         };
-
-        // Pass this to Header so it can clear data when model is switched.
-        this.clearData = () => {
-            this.setState({requestData: null, responseData: null})
-        }
-
-        // Callback used by file objects to set the active file.
-        this.setFile = (fileName) => {
-            console.log(`Setting file to ${fileName}`);
-            this.setState({fileName: {fileName}});
-        }
 
         // Components use history.push to change location and attach
         // `requestData` and `responseData` updates to the location object.
         props.history.listen((location, action) => {
             const { state } = location;
             if (state) {
-                const { requestData, responseData } = state;
-                this.setState({requestData, responseData});
+                const { responseData } = state;
+                this.setState({responseData});
             }
         });
     }
@@ -83,9 +70,7 @@ class Demo extends Component {
                     <h1 className="App-title">KGLM Dataset Visualization</h1>
                 </header>
                 <div className="pane-container">
-                    <Menu selectedModel={selectedModel}
-                          clearData={this.clearData}
-                          setFile={this.setFile}/>
+                    <Menu selectedModel={selectedModel} responseData={responseData}/>
                     <ModelComponent/>
                 </div>
             </div>

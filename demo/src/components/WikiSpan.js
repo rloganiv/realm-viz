@@ -15,7 +15,7 @@ class WikiSpan extends React.Component {
                 <a href={'http://wikidata.org/wiki/' + entity} target="_blank">
                     <span className="highlight green bottom">
                         <span className="dropdown-text highlight__content">{text}</span>
-                        <span className="highlight__label"><strong>WIKI-ENT</strong></span>
+                        <span className="highlight__label"><strong>WIKI</strong></span>
                     </span>
                 </a>
             </div>

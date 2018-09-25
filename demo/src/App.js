@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import EntityComponent from './components/EntityComponent';
+import CorefComponent from './components/CorefComponent';
 import Menu from './components/Menu';
 import logo from './logo.svg';
 
@@ -58,8 +59,11 @@ class Demo extends Component {
         const ModelComponent = () => {
             if (selectedModel === 'entity'){
                 return (<EntityComponent requestData={requestData} responseData={responseData}/>)
+            } else if (selectedModel === 'coref'){
+                return (<CorefComponent requestData={requestData} responseData={responseData}/>)
             } else {
                 return (<h1>Undefined Model</h1>)
+
             }
         }
 

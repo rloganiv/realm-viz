@@ -1,3 +1,5 @@
+// Source: https://github.com/allenai/allennlp-demo
+
 import React from 'react';
 import '../../css/Highlight.css';
 

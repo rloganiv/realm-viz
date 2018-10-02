@@ -11,6 +11,7 @@ import sys
 from flask import Flask, Response, jsonify, request, send_file, send_from_directory
 from flask_cors import CORS
 from gevent.pywsgi import WSGIServer
+from sqlitedict import SqliteDict
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,10 @@ def make_app() -> Flask:
     logger.info('Input file: %s', FLAGS.input)
     f = open(FLAGS.input, 'r')
 
+    # logger.info('Alias db: %s', FLAGS.alias)
+    # alias_db = SqliteDict(FLAGS.alias, flag='r')
+    alias_db = {}
+
     @app.route('/')
     def index() -> Response:
         return send_file(os.path.join(FLAGS.build_dir, 'index.html'))
@@ -45,6 +50,21 @@ def make_app() -> Flask:
             line = f.readline()
         response = json.loads(line)
         return jsonify(response)
+
+    @app.route('/getName', methods=['POST'])
+    def get_name() -> Response:
+        data = request.json
+        if data is None:
+            return
+        out = data.copy()
+        for key, value in data:
+            try:
+                if value in alias_db:
+                    out[key] = alias_db[value]
+            except:
+                pass
+        logger.debug('out "%s"', out)
+        return jsonify(out)
 
     # As an SPA, we need to return index.html for /model-name and /model-name/permalink.
     # Not sure what this means ... looks like a stupid hack to me.

@@ -81,7 +81,6 @@ class _EntityComponent extends React.Component {
         const nel = responseData && responseData.nel;
 
         const spanWrapper = (spans) => {
-            console.log(spans);
             return spans.map((span, i) =>
                 span.type === 'wikilink' ? (
                     <WikiSpan key={i} text={span.text} entity={span.data} />

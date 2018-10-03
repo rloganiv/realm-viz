@@ -96,33 +96,20 @@ class StorySpan extends React.Component {
 
 class InfoBox extends React.Component {
 
-  //  fetch(`${API_ROOT}/getName`, {
-  //    method: 'POST',
-  //    headers: {
-  //      'Accept': 'application/json',
-  //      'Content-Type': 'application/json'
-  //    },
-  //    body: JSON.stringify({ info: this.state.info })
-  //  }).then(function (response) {
-  //    return response.json();
-  //  }).then((json) => {
-  //    this.setState({info: json});
-  //  }).catch((error) => {
-  //    console.error(error);
-  //  });
-  render() {
-    const { span } = this.props;
-    if ( span ) {
-      return (
-        <div className='infobox'>
-          <b>Parent Id:</b><span>{span.parent_id} </span>
-          <b>Relation:</b><span>{span.relation} </span>
-          <b>Id:</b><span>{span.id} </span>
-        </div>
-      )
+    render() {
+        const { span } = this.props;
+        if ( span ) {
+            return (
+                <div className='infobox'>
+                <b>Parent Id:</b><span>{span.parent_id} </span>
+                <b>Relation:</b><span>{span.relation} </span>
+                <b>Id:</b><span>{span.id} </span>
+                </div>
+            )
+        } else {
+            return null;
+        }
     }
-    return null;
-  }
 }
 
 class _StoryComponent extends React.Component {

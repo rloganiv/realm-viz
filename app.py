@@ -21,7 +21,7 @@ def main(_):
     logger.info('Starting a server on port %i.', FLAGS.port)
     app = make_app()
     CORS(app)
-    http_server = WSGIServer(('localhost', FLAGS.port), app)
+    http_server = WSGIServer((FLAGS.ip, FLAGS.port), app)
     logger.info('Server running')
     http_server.serve_forever()
 
@@ -58,12 +58,15 @@ def make_app() -> Flask:
             return
         out = data.copy()
         for key, value in data:
+            ### STUPID HACK ###
+            if isinstance(value, list):
+                value = value[0]
+            ### END ###
             try:
                 if value in alias_db:
                     out[key] = alias_db[value]
             except:
                 pass
-        logger.debug('out "%s"', out)
         return jsonify(out)
 
     # As an SPA, we need to return index.html for /model-name and /model-name/permalink.
@@ -72,7 +75,7 @@ def make_app() -> Flask:
     @app.route('/coref')
     @app.route('/story')
     def return_page() -> Response:
-        return send_from_directory(build_dir, 'index.html')
+        return send_from_directory(FLAGS.build_dir, 'index.html')
 
     return app
 
@@ -83,6 +86,7 @@ if __name__ == '__main__':
                         help='The JSONL data file to visualize')
     parser.add_argument('--build_dir', type=str, default='demo/build/',
                         help='App front-end build folder')
+    parser.add_argument('--ip', type=str, default='0.0.0.0')
     parser.add_argument('--port', '-p', type=int, default=8000)
     parser.add_argument('--debug', action='store_true')
     FLAGS, _ = parser.parse_known_args()

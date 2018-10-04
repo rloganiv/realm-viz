@@ -80,12 +80,12 @@ class StorySpan extends React.Component {
 
     return (
       <div className="storyspan">
-        <a href={'https://wikidata.org/wiki/' + id} target='_blank'>
+        <a href={'https://wikidata.org/wiki/' + id[0]} target='_blank'>
           <span className={conditionalClasses}
               onMouseOver={ onMouseOver ? () => { onMouseOver(span) } : null}>
             <span className="highlight__content">{text}</span>
             <span className="highlight__label"><strong>{source}</strong></span>
-            <span className="highlight__tooltip">{id}</span>
+            <span className="highlight__tooltip">{id[1]}</span>
           </span>
         </a>
       </div>
@@ -101,9 +101,9 @@ class InfoBox extends React.Component {
         if ( span ) {
             return (
                 <div className='infobox'>
-                <b>Parent Id:</b><span>{span.parent_id} </span>
-                <b>Relation:</b><span>{span.relation} </span>
-                <b>Id:</b><span>{span.id} </span>
+                <b>Parent Id:</b><span>{span.parent_id[1]}({span.parent_id[0]}) </span>
+                <b>Relation:</b>{span.relation[1][0] ? <span>{span.relation[0][1]}:{span.relation[1][1]}({span.relation[0][0]}:{span.relation[1][0]}) </span> : <span>{span.relation[0][1]}({span.relation[0][0]}) </span>}
+                <b>Id:</b><span>{span.id[1]}({span.id[0]}) </span>
                 </div>
             )
         } else {

@@ -1,6 +1,7 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    right: 0;
 }
 
 /* Dropdown table (hidden by default) */
@@ -8,6 +9,12 @@
     display: none;
     position: absolute;
     background-color: #f1f1f1;
+    overflow: auto;
+    /*height: auto;
+    width: auto;
+    right: 0;
+    left: auto;
+    */
     z-index: 1;
 }
 

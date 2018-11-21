@@ -33,7 +33,7 @@ const transform = (tokens, entities, nel) => {
             inside = true;
         }
     });
-    
+
     // Annotate entity linker results
     nel.forEach((result, i) => {
         var wikilink = false;

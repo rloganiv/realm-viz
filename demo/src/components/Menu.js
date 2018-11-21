@@ -60,6 +60,7 @@ class _Menu extends React.Component {
                                 {buildLink('entity', 'Entities')}
                                 {buildLink('coref', 'Coreference Clusters')}
                                 {buildLink('story', 'Generative Story')}
+                                {buildLink('diff', 'Annotation Differences')}
                                 <li className='nav__cell right next__button'>
                                     <span><a onClick={this.getNextExample}>&#129094;</a></span>
                                 </li>

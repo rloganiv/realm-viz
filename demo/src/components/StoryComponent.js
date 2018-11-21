@@ -102,7 +102,7 @@ class InfoBox extends React.Component {
             return (
                 <div className='infobox'>
                 <b>Parent Id:</b><span>{span.parent_id[1]}({span.parent_id[0]}) </span>
-                <b>Relation:</b>{span.relation[1][0] ? <span>{span.relation[0][1]}:{span.relation[1][1]}({span.relation[0][0]}:{span.relation[1][0]}) </span> : <span>{span.relation[0][1]}({span.relation[0][0]}) </span>}
+                <b>Relation:</b><span>{span.relation[1]}({span.relation[0]}) </span>
                 <b>Id:</b><span>{span.id[1]}({span.id[0]}) </span>
                 </div>
             )

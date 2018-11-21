@@ -3,6 +3,7 @@ import  { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import EntityComponent from './components/EntityComponent';
 import CorefComponent from './components/CorefComponent';
 import StoryComponent from './components/StoryComponent';
+import DiffComponent from './components/DiffComponent';
 import Menu from './components/Menu';
 import logo from './logo.svg';
 
@@ -64,6 +65,8 @@ class Demo extends Component {
                 return (<CorefComponent requestData={requestData} responseData={responseData}/>)
             } else if (selectedModel === 'story'){
                 return (<StoryComponent requestData={requestData} responseData={responseData}/>)
+            } else if (selectedModel === 'diff'){
+                return (<DiffComponent requestData={requestData} responseData={responseData}/>)
             } else {
                 return (<h1>Undefined Model</h1>)
             }

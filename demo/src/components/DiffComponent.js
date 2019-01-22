@@ -9,6 +9,9 @@ import '../css/NelSpan.css';
 import '../css/Highlight.css';
 
 
+const CHAR_LIMIT = 32;
+
+
 function transform(tokens, annotations){
   let spans = [];
 
@@ -54,11 +57,11 @@ class Row extends React.Component {
     if (annotation) {
       return (
         <tr>
-          <td align="left">{alias}</td>
-          <td align="left">{annotation.parent_id}</td>
-          <td align="left">{annotation.relation}</td>
-          <td align="left">{annotation.id}</td>
-          <td align="left">{annotation.source}</td>
+          <td align="left"><a href={`https://www.wikidata.org/wiki/${annotation.id[0]}`} target="_blank">{alias}</a></td>
+          <td align="left">{annotation.parent_id.toString().substring(0, CHAR_LIMIT)}</td>
+          <td align="left">{annotation.relation.toString().substring(0, CHAR_LIMIT)}</td>
+          <td align="left">{annotation.id.toString().substring(0, CHAR_LIMIT)}</td>
+          <td align="left">{annotation.source.toString().substring(0, CHAR_LIMIT)}</td>
         </tr>
       )
     } else {

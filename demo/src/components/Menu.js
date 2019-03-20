@@ -62,7 +62,7 @@ class _Menu extends React.Component {
                                 {buildLink('story', 'Generative Story')}
                                 {buildLink('diff', 'Annotation Differences')}
                                 <li className='nav__cell right next__button'>
-                                    <span><a onClick={this.getNextExample}>&#129094;</a></span>
+                                    <span><a onClick={this.getNextExample}>&#8594;</a></span>
                                 </li>
                         </ul>
                     </nav>
